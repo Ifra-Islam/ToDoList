@@ -1,0 +1,20 @@
+<div class="list">
+    
+    <div class="col-md-12">
+        <h4>Lists of User</h4>
+    </div>
+<!--  
+    Radio Button
+    <input type="radio" value="male" name="gender" ngModel> Male
+    <input type="radio" value="female" name="gender" ngModel> Female -->
+       <!-- display list of users  -->
+
+    <p  *ngFor="let user of users" >
+            {{user.Name}}
+            {{user.Age}}
+            <button class="btn btn-primary" (click)="edit()">Edit</button>
+            <button class="btn btn-primary" (click)="remove(i)  let i = index">Delete</button>
+        </p>
+    
+</div>
+
