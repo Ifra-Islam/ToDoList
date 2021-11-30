@@ -6,17 +6,18 @@
        <div>
          <form class="form">
                  <div class="tb">
-                 <input   placeholder="Email" [(ngModel)]="username">
+                 <input   type="text" name="email"  placeholder="Email" [(ngModel)]="username">
                  </div>
                  <br>
              <div class="tb">
-               <input  placeholder="Password" [(ngModel)]="password">
+               <input type="password" name="password"  placeholder="Password" [(ngModel)]="password">
              </div>
              <br>
          </form>
        </div>
        <div>
-         <button class="btn btn-primary" (click)="login()" >Login</button>
+         <button class="btn btn-primary"(click)="login()" >Login</button>
        </div>
    </div>
    <!-- login-form ended -->
+   

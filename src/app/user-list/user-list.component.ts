@@ -1,46 +1,66 @@
 import { Component, OnInit } from '@angular/core';
-
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  headers = ["id", "Name", "Age", "Gender"];
-  users = [
-    { id:'1', Name: 'Anna', Age: '20',   Gender:'Female' },
-    { id:'2', Name: 'Maxi',  Age: '29',   Gender:'Female' },
-    { id:'3', Name: 'John',  Age: '22',  Gender:'Male' }
+ popup = false;
+ name!: string;
+ age!: string;
+ gender!: any;
+ updateIndex!: number;
+ crudOperation!: string;
+ radioOption!: boolean;
+  
+ users = [
+    {  Name: 'Anna', Age: '20',   Gender:'Female' },
+    {  Name: 'Maxi',  Age: '29',   Gender:'Female' },
+    {  Name: 'Johnye',  Age: '22',  Gender:'Male' }
     
 ];
-  show: boolean = false;
-  value: any;
-  id: any;
-  item: any;
 
-  constructor() { }
-  //create Function
-  // create(item: any) {
-  //   this.users.push({
-  //     id: Date.now(),
-  //     Name: item,
-  //     done: false,
-  //     date: new Date()
-  //   });
-  // }
-  // delete function
-  remove(msg: any) {
-    const index: number = this.users.indexOf(msg);
-    if (index !== -1) {
-       this.users.splice(index, 1);
+//clear inputs if contain any data
+clearData() {
+  this.name = '';
+  this.age = '';
+  this.gender = '';
+  this.crudOperation = 'add';
+}
+
+
+//add User Funciton
+addUser(){
+  const newData= { Name: this.name , Age: this.age, Gender: this.gender}
+  this.users.push(newData);
+}
+//edit user function
+  
+  edit(value:any, index: any): void{
+  this.name = value.Name;
+  this.age = value.Age;
+  this.gender = value.Gender;
+  console.log(this.gender);
+  this.updateIndex = index;
+  this.crudOperation = 'update';
+}
+ 
+remove(value: any): void{
+    for(let i = 0; i < this.users.length; i++) {
+      if(this.users[i].Name === value){
+        this.users.splice(i, 1);
+      }
     }
- }
-  // edit function
-  edit(id: any): void {
-    this.show = true;
-    this.id = id;
   }
-
-  ngOnInit(): void {
+  //when user click on save button
+  updateData(){
+      this.users[this.updateIndex].Name = this.name;
+      this.users[this.updateIndex].Age = this.age;
+      this.users[this.updateIndex].Gender = this.gender;
+      console.log(this.gender);
+     
+  }
+  ngOnInit() {
+    localStorage.setItem('flag', '1');
   }
 }
